@@ -1,0 +1,26 @@
+.main{
+    width: 98%;
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    min-height: 80dvh;
+}
+  
+.main .aside{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-radius: 10px;
+    width: 25%;
+    background: #2e5adf;
+}
+  
+.main .principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64%;
+    border-radius: 10px;
+    background: #2e5adf;
+}

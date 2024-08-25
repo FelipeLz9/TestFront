@@ -1,0 +1,9 @@
+.header{
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2e5adf;
+}
+  
