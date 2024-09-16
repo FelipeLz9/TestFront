@@ -40,32 +40,10 @@ footer {
 }
 
 footer p {
-    color: white; /* Define el color de los párrafos en el footer */
+    color: white; 
     margin: 10px 0;
 }
 
 footer div {
-    margin-bottom: 10px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table, th, td {
-    border: 1px solid black;
-}
-
-th, td {
-    padding: 10px;
-    text-align: center;
-}
-
-img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
     margin-bottom: 10px;
 }
