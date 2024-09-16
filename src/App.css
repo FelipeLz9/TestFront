@@ -39,6 +39,11 @@ footer {
     text-align: center;
 }
 
+footer p {
+    color: white; /* Define el color de los párrafos en el footer */
+    margin: 10px 0;
+}
+
 footer div {
     margin-bottom: 10px;
 }
