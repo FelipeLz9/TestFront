@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Instructores.css';
 
 interface Instructor {
@@ -10,35 +10,42 @@ interface Instructor {
   imageUrl: string;
 }
 
-const instructors: Instructor[] = [
-  {
-    name: 'Ana García',
-    role: 'Instructora de Yoga y Pilates',
-    email: 'ana@escueladeportiva.com',
-    experience: '8 años enseñando yoga y pilates, con certificaciones internacionales.',
-    specialties: 'Flexibilidad, bienestar mental, y equilibrio físico.',
-    imageUrl: 'https://www.polisura.edu.co/wp-content/uploads/2024/02/instructor-fitness.jpg',
-  },
-  {
-    name: 'Juan Pérez',
-    role: 'Instructor de Boxeo y Entrenamiento Funcional',
-    email: 'juan@escueladeportiva.com',
-    experience: '10 años entrenando boxeo y atletas de alto rendimiento.',
-    specialties: 'Preparación física, fuerza, resistencia, y técnica de combate.',
-    imageUrl: 'https://img.freepik.com/fotos-premium/entrenador-e-instructor-fitness-feliz-deportivo_1077802-57918.jpg',
-  },
-  
-  {
-    name: 'Carlos Martínez',
-    role: 'Instructor de HIIT y CrossFit',
-    email: 'carlos@escueladeportiva.com',
-    experience: '5 años como entrenador de CrossFit y clases de alta intensidad.',
-    specialties: 'Condicionamiento físico, entrenamiento en intervalos, y técnicas de levantamiento de pesas.',
-    imageUrl: 'https://cdn.static.aptavs.com/imagenes/14-estrategias-de-marketing-para-entrenadores-personales/participar-en-entrevistas-o-podcasts-relacionados-con-el-fitness_905x603.jpg',
-  },
-];
-
 const Instructores: React.FC = () => {
+  const [instructors, setInstructors] = useState<Instructor[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchInstructors = async () => {
+      try {
+        const response = await fetch('/instructores.json');
+        if (!response.ok) {
+          throw new Error('Error al obtener los datos');
+        }
+        const data: Instructor[] = await response.json();
+        setInstructors(data);
+        setLoading(false);
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError('Error desconocido');
+        }
+        setLoading(false);
+      }
+    };
+
+    fetchInstructors();
+  }, []);
+
+  if (loading) {
+    return <p>Cargando instructores...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
   return (
     <section>
       <h1>Conoce a Nuestros Instructores</h1>
